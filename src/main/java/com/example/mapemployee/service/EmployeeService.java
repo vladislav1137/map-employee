@@ -3,7 +3,9 @@ package com.example.mapemployee.service;
 import com.example.mapemployee.exceptions.EmployeeAlreadyAddedException;
 import com.example.mapemployee.exceptions.EmployeeNotFoundException;
 import com.example.mapemployee.exceptions.EmployeeStorageIsFullException;
+import com.example.mapemployee.exceptions.InavalidDataException;
 import com.example.mapemployee.model.Employee;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -20,6 +22,9 @@ public class EmployeeService {
     }
 
     public Employee add(Employee employee) {
+        if (!StringUtils.isAlpha(employee.getFirstName()) || !StringUtils.isAlpha(employee.getLastName())) {
+            throw new InavalidDataException();
+        }
         if (employees.size() >= SIZE_LIMIT) {
             throw new EmployeeStorageIsFullException();
         }
