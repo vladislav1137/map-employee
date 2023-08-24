@@ -18,6 +18,16 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
+                '}';
+    }
+
     public Integer getDepartment() {
         return department;
     }
